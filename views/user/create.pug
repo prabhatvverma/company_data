@@ -1,0 +1,53 @@
+extends ../layout
+block content
+	<div class="container body_bgc container-lg">
+		<div class="col-8 form_bg_clr">
+			<h3 class ="text-center mt-2 emp_dtls"> Employee Details</h3>
+			<form action="/users/store" method = "post">
+			<div class="col-sm mt-2 demo">
+				<input type="emp_id" name ="uuid" class="form-control" id="exampleFormControlInput1" placeholder="Enter Employe Id" required>
+			<div>
+			<div class="col-sm mt-2">
+				<input type="emp_id" name ="first_name" class="form-control" id="exampleFormControlInput1" placeholder="First Name" required>
+			</div>
+			<div class="col-sm mt-2">
+				<input type="emp_id" name ="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Last Name" required>
+			</div>
+			<div class="col-sm mt-2">
+				<input type="emp_id" name ="father_name" class="form-control" id="exampleFormControlInput1" placeholder="Father's Name">
+			</div>
+			<div class="col-sm mt-2">
+				<input type="emp_id" name ="email" class="form-control" id="exampleFormControlInput1" placeholder="Email" required>
+			</div>
+			<div class="col-sm mt-2">
+				<input type="emp_id" name ="phone_no" class="form-control" id="exampleFormControlInput1" placeholder="phone no." required>
+			</div>
+			<div class="col-sm mt-2">
+			<select name ="gender" id= "" class = "form-control" required>
+				<option value ="">Gender</option>
+				<option value ="male"> Male </option>
+				<option value ="female"> female </option>
+				<option value ="others"> Others </option>
+			</select>
+			</div>
+			<div class="col-sm mt-2">
+				<select name ="state" id= "" class = "form-control">
+					<option value ="">Select State</option>
+				</select>
+			</div>
+			<div class="col-sm mt-2">
+				<select name ="district" id= "" class = "form-control">
+					<option value ="">Select Dist.</option>
+				</select>
+			</div>
+			<div class="mb-3 mt-2">
+				<label for="formFile" class="form-label">Upload your profile pic.</label>
+				<input class="form-control" type="file" id="formFile">
+			</div>
+			</form>
+			<div class ="submit_btn  mt-2 btn-div">
+				<button type="submit" name ="submit" class="btn btn-secondary">Submit</button>
+				<button type="button" class="btn btn-secondary">Clear</button>
+			</div>
+		</div>
+	</div>

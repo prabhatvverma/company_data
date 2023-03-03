@@ -1,0 +1,57 @@
+extends ../layout
+block content
+	<div class="container body_bgc container-lg">
+		<div class="col-8 form_bg_clr">
+			<h3 class ="text-center mt-2 emp_dtls"> Employee Details</h3>
+			each val, index in rows
+				<form action="/users/update/!{val.id}" method = "post">
+					<div class="col-sm mt-2 demo">
+					<input type="text" name ="uuid" class="form-control" id="exampleFormControlInput1" placeholder="Enter Employe Id" value = "!{val.uuid}">
+					<div>
+					<div class="col-sm mt-2">
+					<input type="text" name ="first_name" class="form-control" id="exampleFormControlInput1" placeholder="First Name" value = "!{val.first_name}" >
+					</div>
+					<div class="col-sm mt-2">
+					<input type="text" name ="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Last Name" value = "!{val.last_name}">
+					</div>
+					<div class="col-sm mt-2">
+					<input type="text" name ="father_name" class="form-control" id="exampleFormControlInput1" placeholder="Father's Name" value = "!{val.father_name}">
+					</div>
+					<div class="col-sm mt-2">
+					<input type="text" name ="email" class="form-control" id="exampleFormControlInput1" placeholder="Email" value = "!{val.email}">
+					</div>
+					<div class="col-sm mt-2">
+					<input type="text" name ="phone_no" class="form-control" id="exampleFormControlInput1" placeholder="phone no." value = "!{val.phone_no}">
+					</div>
+					<div class="col-sm mt-2">
+					<select name ="gender" id= "" class = "form-control">
+					if val.gender == "male"
+						<option value="male" selected> Male </option>
+					else
+						<option value="male"> Male </option>
+					if val.gender == "female"
+						<option value= "female" selected> female </option>
+					else
+						<option value= "female"> female </option>
+					if val.gender == "other"
+						<option value="other" selected> Others </option>
+					else
+						<option value="other"> Others </option>
+					</select>
+					</div>
+					<div class="col-sm mt-2">
+					<select name ="state" id= "" class = "form-control">
+					<option value ="!{val.state}">Select State</option>
+					</select>
+					</div>
+					<div class="col-sm mt-2">
+					<select name ="district" id= "" class = "form-control">
+					<option value ="!{val.city}">Select Dist.</option>
+					</select>
+					</div>
+					</form>
+					<div class ="submit_btn  mt-2 btn-div">
+					<button type="submit" name ="update" class="btn btn-secondary">Update</button>
+					</div>
+			</div>
+	</div>

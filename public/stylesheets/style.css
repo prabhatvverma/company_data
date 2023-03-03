@@ -1,0 +1,50 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+a {
+  color: #00B7FF;
+}
+h3{
+  padding-top: 5%;
+  font-weight: bolder;
+  color: blue;
+}
+.gradient-custom {
+  background: -webkit-linear-gradient(to right, rgb(200, 161, 243), rgba(37, 117, 252, 1));
+  
+  background: linear-gradient(to right, rgb(4, 110, 105), rgb(102, 245, 245))
+  }
+
+.body_bgc{
+  border-radius: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  background-color: #033038;
+}
+.form_bg_clr{
+  height: 90%;
+  border-radius: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  background-color: #0aecda;
+}
+.demo{
+  
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: 2%;
+  width: 85%;
+}
+.btn{
+  margin-bottom: 5%;
+  
+  
+}
+.btn-div{
+  width: 100%;
+}
