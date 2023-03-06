@@ -11,7 +11,7 @@ router.get('/create', UsersController.create);
 
 router.post('/store', UsersController.store);
 
-router.get('/login', UsersController.login);
+router.get('/registration', UsersController.registration);
 
 router.get('/:id/edit', UsersController.edit);
 

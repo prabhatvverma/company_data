@@ -3,24 +3,24 @@ block content
 	<div class="container body_bgc container-lg">
 		<div class="col-8 form_bg_clr">
 			<h3 class ="text-center mt-2 emp_dtls"> Employee Details</h3>
-			<form action="/users/store" method = "post">
+			<form action="/users/store" method = "POST" enctype="multipart/form-data">
 			<div class="col-sm mt-2 demo">
-				<input type="emp_id" name ="uuid" class="form-control" id="exampleFormControlInput1" placeholder="Enter Employe Id" required>
+				<input type="text" name ="uuid" class="form-control" id="exampleFormControlInput1" placeholder="Enter Employe Id" required>
 			<div>
 			<div class="col-sm mt-2">
-				<input type="emp_id" name ="first_name" class="form-control" id="exampleFormControlInput1" placeholder="First Name" required>
+				<input type="text" name ="first_name" class="form-control" id="exampleFormControlInput1" placeholder="First Name" required>
 			</div>
 			<div class="col-sm mt-2">
-				<input type="emp_id" name ="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Last Name" required>
+				<input type="text" name ="last_name" class="form-control" id="exampleFormControlInput1" placeholder="Last Name" required>
 			</div>
 			<div class="col-sm mt-2">
-				<input type="emp_id" name ="father_name" class="form-control" id="exampleFormControlInput1" placeholder="Father's Name">
+				<input type="text" name ="father_name" class="form-control" id="exampleFormControlInput1" placeholder="Father's Name">
 			</div>
 			<div class="col-sm mt-2">
-				<input type="emp_id" name ="email" class="form-control" id="exampleFormControlInput1" placeholder="Email" required>
+				<input type="text" name ="email" class="form-control" id="exampleFormControlInput1" placeholder="Email" required>
 			</div>
 			<div class="col-sm mt-2">
-				<input type="emp_id" name ="phone_no" class="form-control" id="exampleFormControlInput1" placeholder="phone no." required>
+				<input type="text" name ="phone_no" class="form-control" id="exampleFormControlInput1" placeholder="phone no." required>
 			</div>
 			<div class="col-sm mt-2">
 			<select name ="gender" id= "" class = "form-control" required>
@@ -42,7 +42,7 @@ block content
 			</div>
 			<div class="mb-3 mt-2">
 				<label for="formFile" class="form-label">Upload your profile pic.</label>
-				<input class="form-control" type="file" id="formFile">
+				<input class="form-control" type="file" id="formFile" name = "img_file">
 			</div>
 			</form>
 			<div class ="submit_btn  mt-2 btn-div">

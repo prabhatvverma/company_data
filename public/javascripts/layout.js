@@ -8,8 +8,8 @@ document.getElementById("create-tab").onclick = function () {
 
 };
 
-document.getElementById("login-tab").onclick = function () {
-    location.href = "/users/login";
+document.getElementById("registration-tab").onclick = function () {
+    location.href = "/users/registration";
 
 };
 console.log("abcdefgh");

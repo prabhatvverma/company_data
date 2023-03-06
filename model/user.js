@@ -1,9 +1,10 @@
 const db = require("../config/db");
 class User {
 
-    async create(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district) {
-        var sql = "INSERT INTO users_data(uuid, first_name, last_name, father_name, email,phone_no,gender,state,district) VALUES(?)";
-        var values = [uuid, first_name, last_name, father_name, email, phone_no, gender, state, district];
+    async create(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district,file_name) {
+        // String(file_db);
+        var sql = "INSERT INTO users_data(uuid, first_name, last_name, father_name, email,phone_no,gender,state,district, img_file) VALUES(?)";
+        var values = [uuid, first_name, last_name, father_name, email, phone_no, gender, state, district,file_name];
         db.query(sql, [values], function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
