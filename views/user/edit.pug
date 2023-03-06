@@ -4,7 +4,7 @@ block content
 		<div class="col-8 form_bg_clr">
 			<h3 class ="text-center mt-2 emp_dtls"> Employee Details</h3>
 			each val, index in rows
-				<form action="/users/update/!{val.id}" method = "post" enctype="multipart/form-data">
+				<form action="/users/update/!{val.id}" method = "post" enctype="multipart/form-data" runat="server">
 					<div class="col-sm mt-2 demo">
 					<input type="text" name ="uuid" class="form-control" id="exampleFormControlInput1" placeholder="Enter Employe Id" value = "!{val.uuid}">
 					<div>
@@ -47,11 +47,30 @@ block content
 					<div class="col-sm mt-2">
 					<select name ="district" id= "" class = "form-control">
 					<option value ="!{val.city}">Select Dist.</option>
+					<div class="col-sm mt-2">
+					<label for="formFile" class="form-label">Upload your profile pic.</label>
+					<input class="form-control" type="file" id="image-input" name = "img_file" value="/images/!{val.img_file}" >
+					</div>
 					</select>
 					</div>
-					</form>
-					<div class ="submit_btn  mt-2 btn-div">
-					<button type="submit" name ="update" class="btn btn-secondary">Update</button>
-					</div>
+					<div class="col-sm mt-2">
+						<img src="/images/!{val.img_file}" class="rounded float-left" id="preview-image" width="100px"  alt="">
+						script.
+							var imageInput = document.getElementById("image-input");
+							var previewImage = document.getElementById("preview-image");
+
+							imageInput.addEventListener("change",function(event){
+								if(event.target.files.length == 0){
+									return
+								}
+								var tempUrl = URL.createObjectURL(event.target.files[0]);
+								previewImage.setAttribute('src',tempUrl);
+							});
+
+				</div>
+				</form>
+				<div class ="submit_btn  mt-2 btn-div">
+				<button type="submit" name ="update" class="btn btn-secondary">Update</button>
+				</div>
 			</div>
 	</div>

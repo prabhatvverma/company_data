@@ -42,12 +42,28 @@ block content
 			</div>
 			<div class="mb-3 mt-2">
 				<label for="formFile" class="form-label">Upload your profile pic.</label>
-				<input class="form-control" type="file" id="formFile" name = "img_file">
+				<input class="form-control" type="file" id="image-input" name = "img_file">
 			</div>
-			</form>
-			<div class ="submit_btn  mt-2 btn-div">
-				<button type="submit" name ="submit" class="btn btn-secondary">Submit</button>
-				<button type="button" class="btn btn-secondary">Clear</button>
+			<div class="mb-3 mt-2">
+			<img src="" class="rounded float-left" id="preview-image" width="100px"  alt="">
+			script.
+				var imageInput = document.getElementById("image-input");
+				var previewImage = document.getElementById("preview-image");
+
+				imageInput.addEventListener("change",function(event){
+					if(event.target.files.length == 0){
+						return
+					}
+					var tempUrl = URL.createObjectURL(event.target.files[0]);
+					previewImage.setAttribute('src',tempUrl);
+				});
+			
 			</div>
+	</div>
+	</form>
+	<div class ="submit_btn  mt-2 btn-div">
+		<button type="submit" name ="submit" class="btn btn-secondary">Submit</button>
+		<button type="button" class="btn btn-secondary">Clear</button>
+	</div>
 		</div>
 	</div>

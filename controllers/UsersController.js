@@ -1,6 +1,8 @@
 const user = require("../model/user");
 // const user = require("../model/user");
 const { param } = require("../routes");
+const fs = require('fs');
+const { query } = require("express");
 // let temp = {};
 class UsersController {
 
@@ -54,11 +56,10 @@ class UsersController {
         // console.log(filename);
         var dateTime = Date.now();
         var file_name = dateTime + filename;
-        var file_db = file.mv('./public/images/' + file_name)
-        console.log(file_db);
+        file.mv('./public/images/' + file_name);
         // console.log(uuid, "==============");
         const re = await user.create(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, file_name);
-        console.log("res", re);
+        // console.log("res", re);
         var rows = await user.getAll();
         //    console.log("rows", rows);
         res.render('user/index', {
@@ -95,21 +96,34 @@ class UsersController {
         // console.log("hello iam there",typeof(req.body.first_name));
 
         // return false; 
-        const { uuid, first_name, last_name, father_name, email, phone_no, gender, state, district } = req.body;
+        var file = req.files.img_file;
+        var filename = file.name;
+        var dateTime = Date.now();
+        var file_name = dateTime + filename;
+        file.mv('./public/images/' + file_name);
+        const { uuid, first_name, last_name, father_name, email, phone_no, gender, state, district} = req.body;
+        console.log(req.body);
         let { id } = req.params;
 
-        await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender, state, district);
+        await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, file_name);
         res.redirect('/users');
     }
 
     async delete(req, res, next) {
         let { id } = req.params;
+
+        // fs.unlink('./public/images/1759790.jpg',(err => {
+        //     if (err) console.log(err);}));
         // console.log("_____________"+id);
         await user.deleteDatabyid(id);
         
+        // const filenamedl= get.image.split("/images/")
+        // fs.unlink('public/images/',file,(err => {
+        //     if (err) console.log(err);}));
+        // fs.unlink('images/${img_file}',()=>{});
         res.redirect('/users');
     }
 }
 
 // module.exports = temp;
-module.exports = new UsersController;
+module.exports = new UsersController;        
