@@ -46,22 +46,25 @@ class UsersController {
         });
     }
 
-    async store(req, res, next) {
+    /**
+     * for storing data
+     * 
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
+    async store(req, res, next){
         const { uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, img_file } = req.body;
         // console.log(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district);
         // console.log(req.body);
-        console.log(req.files.img_file);
+        // console.log(req.files.img_file);
         var file = req.files.img_file;
         var filename = file.name;
-        // console.log(filename);
         var dateTime = Date.now();
         var file_name = dateTime + filename;
         file.mv('./public/images/' + file_name);
-        // console.log(uuid, "==============");
         const re = await user.create(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, file_name);
-        // console.log("res", re);
         var rows = await user.getAll();
-        //    console.log("rows", rows);
         res.render('user/index', {
             title: 'Express users',
             rows: rows
@@ -77,38 +80,45 @@ class UsersController {
 
     async edit(req, res, next) {
         let { id } = req.params;
-        console.log(typeof (id));
-        //    temp=id;
-        //    console.log("------------->"+id);
-
-        //    console.log("=======" + id);
-        // return false;
         var rows = await user.getDatabyId(id);
+        // console.log(rows.id,"++++++++");
+        // return false;
         res.render('user/edit', {
             title: 'Express user',
             rows: rows,
             id
         });
     }
+/**
+ * for updation
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+async update(req, res, next) {
+    // console.log("hello");
+    // console.log("hello iam there",typeof(req.body.first_name));
 
-    async update(req, res, next) {
-        // console.log("hello");
-        // console.log("hello iam there",typeof(req.body.first_name));
+    // return false; 
+    var file = req.files.img_file;
+    var filename = file.name;
+    var dateTime = Date.now();
+    var file_name = dateTime + filename;
+    file.mv('./public/images/' + file_name);
+    const { uuid, first_name, last_name, father_name, email, phone_no, gender, state, district} = req.body;
+    console.log(req.body);
+    let { id } = req.params;
 
-        // return false; 
-        var file = req.files.img_file;
-        var filename = file.name;
-        var dateTime = Date.now();
-        var file_name = dateTime + filename;
-        file.mv('./public/images/' + file_name);
-        const { uuid, first_name, last_name, father_name, email, phone_no, gender, state, district} = req.body;
-        console.log(req.body);
-        let { id } = req.params;
+    await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, file_name);
+    res.redirect('/users');
+}
 
-        await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, file_name);
-        res.redirect('/users');
-    }
-
+    /**
+     * for deletion 
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
     async delete(req, res, next) {
         let { id } = req.params;
 
