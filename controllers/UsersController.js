@@ -1,9 +1,7 @@
 const user = require("../model/user");
-// const user = require("../model/user");
 const { param } = require("../routes");
 const fs = require('fs');
 const { query } = require("express");
-// let temp = {};
 class UsersController {
 
     /**
@@ -37,7 +35,6 @@ class UsersController {
      * show login page
      * @param {*} req
      * @paralet { id } = req.params;
-       console.log("------------->"+id);m {*} res
      * @param {*} next
     */
     async registration(req, res, next) {
@@ -55,9 +52,6 @@ class UsersController {
      */
     async store(req, res, next){
         const { uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district, img_file } = req.body;
-        // console.log(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district);
-        // console.log(req.body);
-        // console.log(typeof(req.files.hobbies));
         var file = req.files.img_file;
         var filename = file.name;
         var dateTime = Date.now();
@@ -83,9 +77,6 @@ class UsersController {
         var rows = await user.getDatabyId(id);
         let hobbies = [rows[0].hobbies];
         console.log(hobbies);
-        // console.log(rows,"++++++++++++++");
-        // console.log(rows.id,"++++++++");
-        // return false;
         res.render('user/edit', {
             title: 'Express user',
             rows: rows,
@@ -100,44 +91,28 @@ class UsersController {
  * @param {*} next 
  */
 async update(req, res, next) {
-    // console.log("hello");
-    // console.log("hello iam there",typeof(req.body.first_name));
-
-    // return false; 
     var file = req.files.img_file;
     var filename = file.name;
     var dateTime = Date.now();
     var file_name = dateTime + filename;
     file.mv('./public/images/' + file_name);
     const { uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district} = req.body;
-    // console.log(req.body);
     let { id } = req.params;
-
     await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district, file_name);
     res.redirect('/users');
 }
 
     /**
-     * for deletion 
+     * Deleting data from database
      * @param {*} req 
      * @param {*} res 
      * @param {*} next 
      */
     async delete(req, res, next) {
         let { id } = req.params;
-
-        // fs.unlink('./public/images/1759790.jpg',(err => {
-        //     if (err) console.log(err);}));
-        // console.log("_____________"+id);
         await user.deleteDatabyid(id);
-        
-        // const filenamedl= get.image.split("/images/")
-        // fs.unlink('public/images/',file,(err => {
-        //     if (err) console.log(err);}));
-        // fs.unlink('images/${img_file}',()=>{});
         res.redirect('/users');
     }
 }
 
-// module.exports = temp;
-module.exports = new UsersController;        
+module.exports = new UsersController;
