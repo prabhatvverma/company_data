@@ -54,16 +54,16 @@ class UsersController {
      * @param {*} next 
      */
     async store(req, res, next){
-        const { uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, img_file } = req.body;
+        const { uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district, img_file } = req.body;
         // console.log(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district);
         // console.log(req.body);
-        // console.log(req.files.img_file);
+        // console.log(typeof(req.files.hobbies));
         var file = req.files.img_file;
         var filename = file.name;
         var dateTime = Date.now();
         var file_name = dateTime + filename;
         file.mv('./public/images/' + file_name);
-        const re = await user.create(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, file_name);
+        const re = await user.create(uuid, first_name, last_name, father_name, email, phone_no, gender, hobbies,state, district, file_name);
         var rows = await user.getAll();
         res.render('user/index', {
             title: 'Express users',
@@ -81,11 +81,15 @@ class UsersController {
     async edit(req, res, next) {
         let { id } = req.params;
         var rows = await user.getDatabyId(id);
+        let hobbies = [rows[0].hobbies];
+        console.log(hobbies);
+        // console.log(rows,"++++++++++++++");
         // console.log(rows.id,"++++++++");
         // return false;
         res.render('user/edit', {
             title: 'Express user',
             rows: rows,
+            hobbies:hobbies,
             id
         });
     }
@@ -105,11 +109,11 @@ async update(req, res, next) {
     var dateTime = Date.now();
     var file_name = dateTime + filename;
     file.mv('./public/images/' + file_name);
-    const { uuid, first_name, last_name, father_name, email, phone_no, gender, state, district} = req.body;
-    console.log(req.body);
+    const { uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district} = req.body;
+    // console.log(req.body);
     let { id } = req.params;
 
-    await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender, state, district, file_name);
+    await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district, file_name);
     res.redirect('/users');
 }
 

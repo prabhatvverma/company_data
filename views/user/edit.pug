@@ -39,6 +39,45 @@ block content
 						<option value="other"> Others </option>
 					</select>
 					</div>
+					<div class="form-check form-check-inline mt-2">
+						p Hobbies
+						//- var hobbi= [songs,games,coding];
+						if val.hobbies.includes("songs")
+							<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value="songs" checked>
+							<label class="form-check-label" for="flexCheckDefault" value="songs">Songs
+							</label> 
+						else
+							<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value="songs">
+							<label class="form-check-label" for="flexCheckDefault" value="songs">Songs
+							</label>
+					</div>
+					<div class="form-check form-check-inline">
+					//- each h in hobbies
+					//- 	<div class="custom-control custom-checkbox custom-control-inline">
+					//- 		input( id=h checked=(rows.hobbies.includes(h)) class="custom-control-input" type="checkbox" name="hobbies" value=h)
+					//- 		<label for="!{h}" class="custom-control-label">!{h}</label>
+					//- 	</div>
+					//- cansole.log(hobbi);
+					//- each h in hobbies
+					if val.hobbies.includes("games")
+						<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value="games" checked>
+						<label class="form-check-label" for="flexCheckDefault" value="games ">Games
+						</label>
+					else
+						<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value="games" >
+						<label class="form-check-label" for="flexCheckDefault" value="games">Games
+						</label>
+					</div>
+					<div class="form-check form-check-inline">
+					if val.hobbies.includes("coding")
+						<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value="coding" checked> 
+						<label class="form-check-label" for="flexCheckDefault" value="coding">Coding
+						</label>  
+					else
+						<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value=""> 
+						<label class="form-check-label" for="flexCheckDefault" value="coding">Coding
+						</label>
+					</div>
 					<div class="col-sm mt-2">
 					<select name ="state" id= "" class = "form-control">
 					<option value ="!{val.state}">Select State</option>

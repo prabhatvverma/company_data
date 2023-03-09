@@ -30,6 +30,22 @@ block content
 				<option value ="others"> Others </option>
 			</select>
 			</div>
+			<div class="form-check form-check-inline mt-2">
+				p Hobbies
+				<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value="songs" checked>
+				<label class="form-check-label" for="flexCheckDefault" value="songs">Songs
+				</label> 
+			</div>
+			<div class="form-check form-check-inline">
+				<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value="games" checked>
+				<label class="form-check-label" for="flexCheckDefault" value="games">Games
+				</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input type="checkbox" class="form-check-input" id="check1" name="hobbies" value="coding" checked> 
+				<label class="form-check-label" for="flexCheckDefault" value="coding">Coding
+				</label>  
+			</div>
 			<div class="col-sm mt-2">
 				<select name ="state" id= "" class = "form-control">
 					<option value ="">Select State</option>
@@ -57,7 +73,7 @@ block content
 					var tempUrl = URL.createObjectURL(event.target.files[0]);
 					previewImage.setAttribute('src',tempUrl);
 				});
-			
+
 			</div>
 	</div>
 	</form>

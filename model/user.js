@@ -4,9 +4,10 @@ const { json } = require("express");
 const { param } = require("../routes");
 class User {
 //adding data to database
-    async create(uuid, first_name, last_name, father_name, email, phone_no, gender, state, district,file_name) {
-        var sql = "INSERT INTO users_data(uuid, first_name, last_name, father_name, email,phone_no,gender,state,district, img_file) VALUES(?)";
-        var values = [uuid, first_name, last_name, father_name, email, phone_no, gender, state, district,file_name];
+    async create(uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district,file_name) {
+        var sql = "INSERT INTO users_data(uuid, first_name, last_name, father_name, email,phone_no,gender,hobbies,state,district, img_file) VALUES(?)";
+        var hobbi = hobbies.toString();
+        var values = [uuid, first_name, last_name, father_name, email, phone_no, gender,hobbi, state, district,file_name];
         db.query(sql, [values], function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -36,10 +37,12 @@ class User {
         })
     }
 //updating data in database
-updateDatabyId(temp, uuid, first_name, last_name, father_name, email, phone_no, gender, state, district,file_name) 
+updateDatabyId(temp, uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district,file_name) 
 {   
+    // console.log(hobbies);
+    // return false;
     // console.log(temp,"new things");
-    var sql = `UPDATE users_data SET uuid = "${uuid}" , first_name ="${first_name}" ,last_name="${last_name}",father_name="${father_name}",email="${email}",phone_no=${phone_no},gender="${gender}",state="${state}",district="${district}", img_file="${file_name}" WHERE id = ${temp}`;
+    var sql = `UPDATE users_data SET uuid = "${uuid}" , first_name ="${first_name}" ,last_name="${last_name}",father_name="${father_name}",email="${email}",phone_no=${phone_no},gender="${gender}",hobbies="${hobbies}",state="${state}",district="${district}", img_file="${file_name}" WHERE id = ${temp}`;
 
     return new Promise((res, rej) => {
         db.query(sql, function (err, result) {
