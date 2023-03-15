@@ -1,34 +1,27 @@
 extends ../layout
 block content
-	<div class="container py-5 h-100">
-		<section class="vh-100 gradient-custom">
-			<div class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col-12 col-md-8 col-lg-6 col-xl-5">
-					<div class="card bg-dark text-white" style="border-radius: 1rem;">
-						<div class="card-body p-5 text-center">
-							<div class="mb-md-5 mt-md-4 pb-5">
-								<h2 class="fw-bold mb-2 text-uppercase">REGISTRATION</h2>
-								<p class="text-white-50 mb-5">Please enter your Deatails !</p>
-									<form id ="form">
-									<div class="form-outline form-white mb-4">
-										<input type="Username" id ="username" class="form-control form-control-lg" placeholder = "Username"/>
-									</div>
-									<div class="form-outline form-white mb-4">
-										<input type="text" id="email" class="form-control form-control-lg" placeholder = "email"/>
-									</div>
-									<div class="form-outline form-white mb-4">
-										<input type="password" id="password" class="form-control form-control-lg" placeholder = " Password"/>
-									</div>
-									<div class="form-outline form-white mb-4">
-										<input type="password" id="cnfpassword" class="form-control form-control-lg" placeholder = " Conferm Password"/>
-									</div>
-								<button class="btn btn-outline-light btn-lg px-5" type="submit">Signup</button>
-							</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<script src = "/javascripts/registration.js"></script>
+	link(rel='preconnect' href='https://fonts.googleapis.com')
+	link(rel='preconnect' href='https://fonts.gstatic.com')
+	link(rel='stylesheet' href='/stylesheets/registration.css')
+	.main_div
+		.container
+		form#form(action="/users/storeLoginDetails" method = "POST" onsubmit="return false" )
+			h1 Registration
+			.input-control
+				label(for='username') Username
+				input#username(name='username' type='text' onkeyup='uservar(),temp()')
+				.error
+			.input-control
+				label(for='email') Email
+				input#email(name='email' type='text' onkeyup ='emailvar(),temp()')
+				.error
+			.input-control
+				label(for='password') Password
+				input#password(name='password' type='password' onkeyup ='passwordvar(),temp()')
+				.error
+			.input-control
+				label(for='password2') Password again
+				input#password2(name='password2' type='password' onkeyup ='cnfpassword(),temp()') 
+				.error
+			button(type='submit' name='submit' id = "submit_btn") Sign Up
+	script(defer='' src='/javascripts/registration.js')

@@ -7,7 +7,7 @@ var fileupload = require('express-fileupload');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dateTime = new Date();
-console.log(dateTime);
+// console.log(dateTime);
 
 var app = express();
 // static folder

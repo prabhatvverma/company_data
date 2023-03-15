@@ -13,6 +13,8 @@ router.post('/store', UsersController.store);
 
 router.get('/registration', UsersController.registration);
 
+router.post('/storeLoginDetails', UsersController.storeLoginDetails);
+
 router.get('/:id/edit', UsersController.edit);
 
 router.get('/:id/delete', UsersController.delete);

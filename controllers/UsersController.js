@@ -20,7 +20,7 @@ class UsersController {
     }
 
     /**
-     * show create form page
+     * Show create form page
      * @param {*} req
      * @param {*} res
      * @param {*} next
@@ -42,7 +42,16 @@ class UsersController {
             title: 'Express user'
         });
     }
-
+    async storeLoginDetails(req, res, next) {
+        const { username, email, password } = req.body;
+        console.log(req.body);
+        const re = await user.registration(username, email, password);
+        var rows = await user.getAllLogin();
+        res.render('user/test', {
+            title: 'Express users',
+            rows: rows
+        });
+    }
     /**
      * for storing data
      * 
@@ -50,14 +59,14 @@ class UsersController {
      * @param {*} res 
      * @param {*} next 
      */
-    async store(req, res, next){
-        const { uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district, img_file } = req.body;
+    async store(req, res, next) {
+        const { uuid, first_name, last_name, father_name, email, phone_no, gender, hobbies, state, district } = req.body;
         var file = req.files.img_file;
         var filename = file.name;
         var dateTime = Date.now();
         var file_name = dateTime + filename;
         file.mv('./public/images/' + file_name);
-        const re = await user.create(uuid, first_name, last_name, father_name, email, phone_no, gender, hobbies,state, district, file_name);
+        const re = await user.create(uuid, first_name, last_name, father_name, email, phone_no, gender, hobbies, state, district, file_name);
         var rows = await user.getAll();
         res.render('user/index', {
             title: 'Express users',
@@ -80,27 +89,27 @@ class UsersController {
         res.render('user/edit', {
             title: 'Express user',
             rows: rows,
-            hobbies:hobbies,
+            hobbies: hobbies,
             id
         });
     }
-/**
- * for updation
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- */
-async update(req, res, next) {
-    var file = req.files.img_file;
-    var filename = file.name;
-    var dateTime = Date.now();
-    var file_name = dateTime + filename;
-    file.mv('./public/images/' + file_name);
-    const { uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district} = req.body;
-    let { id } = req.params;
-    await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender,hobbies, state, district, file_name);
-    res.redirect('/users');
-}
+    /**
+     * for updation
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
+    async update(req, res, next) {
+        var file = req.files.img_file;
+        var filename = file.name;
+        var dateTime = Date.now();
+        var file_name = dateTime + filename;
+        file.mv('./public/images/' + file_name);
+        const { uuid, first_name, last_name, father_name, email, phone_no, gender, hobbies, state, district } = req.body;
+        let { id } = req.params;
+        await user.updateDatabyId(id, uuid, first_name, last_name, father_name, email, phone_no, gender, hobbies, state, district, file_name);
+        res.redirect('/users');
+    }
 
     /**
      * Deleting data from database
